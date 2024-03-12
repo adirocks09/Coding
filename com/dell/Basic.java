@@ -7,6 +7,11 @@ public class Basic {
 
     public static void main(String args[]){
 
+        // Initialisation
+        String fruits[] = {"Apple","Orange","Banana","Guava"};
+        List<String> animals = Arrays.asList("Lion","Tiger","Cow","Goat","Deer");
+        List<String> items = Arrays.asList("Pen","Pencil","Eraser");
+
         // Array to List
         Integer data[] = {5,3,1,9,10,0,7,10};
 
@@ -169,7 +174,44 @@ public class Basic {
         // Filtering Unique
         list.stream().distinct().forEach(System.out::println);
 
+        System.out.println("-------------------------");
 
+        // Map function
+        list.stream().map(x -> x * 10).forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        list.stream().map(x -> x + " Bananas").forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        // Flat Map
+        List<List<String>> complexList = Arrays.asList(Arrays.asList(fruits), animals,items);
+        System.out.println(complexList);
+        List<String> flatList = complexList.stream()
+                                       .flatMap(x -> x.stream())
+                                       .collect(Collectors.toList());
+        System.out.println(flatList);
+
+        // Reduce
+        System.out.println("-------------------------");
+        int sum = list.stream().reduce(0,(a,b) -> a+b);
+        System.out.println(sum);
+
+        System.out.println("-------------------------");
+
+        // Longest Word
+        Optional<String> longestWord  = flatList.stream().reduce((a,b) -> {
+           if(a.length()>b.length()){
+               return a;
+           }else{
+               return b;
+           }
+        });
+
+        longestWord.ifPresentOrElse((x) -> {
+            System.out.println(x.toUpperCase());
+        }, () -> System.out.println(" No Words Found"));
 
     }
 }
