@@ -9,6 +9,9 @@ public class Basic {
 
         // Array to List
         Integer data[] = {5,3,1,9,10,0,7,10};
+
+        // List<Integer> dataList = Arrays.asList(data);  -> this returns un-modifiable list
+
         List<Integer> dataList = new ArrayList<>(Arrays.asList(data));
         dataList.add(20);
         System.out.println(dataList.toString());  // Printing List Directly
@@ -107,6 +110,32 @@ public class Basic {
         empList.add(new Employee(106,"Abcefg","Admin",1200, "Noida"));
         empList.add(new Employee(107,"Abchij","Admin",1500, "Bangalore"));
 
+        System.out.println("-------------------------");
+
+        empList.stream()
+                .filter(x->x.getSalary()>1200)
+                .sorted((x,y)->x.getName().compareTo(y.getName()))
+                .forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        empList.stream()
+                .filter(x->x.getSalary()>1200)
+                .sorted((x,y)->x.getName().compareTo(y.getName()))
+                .skip(2)
+                .limit(2).forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        empList.stream()
+                .filter(x->x.getSalary()>1200)
+                .sorted((x,y)->x.getName().compareTo(y.getName()))
+                .skip(2)
+                .findFirst().ifPresentOrElse(System.out::println, ()->System.out.println("No Values Found"));
+
+
+        System.out.println("-------------------------");
+
         Map<String,List<Employee>> empMap = empList.stream().collect(Collectors.groupingBy(x -> x.getDept() + "_" + x.getLocation()));
 
         System.out.println(empMap.toString());
@@ -122,9 +151,25 @@ public class Basic {
             }
         });
 
-        // Filtering Duplicates
+        System.out.println("-------------------------");
+
+        // Filtering Duplicates Method 1 (Order Not Maintained : HashSet By Default)
         List<Integer> list = Arrays.asList(5, 13, 4, 21, 13, 27, 2, 59, 59, 34);
         Set<Integer> dupData = list.stream().filter(x -> Collections.frequency(list, x) > 1).collect(Collectors.toSet());
+        dupData.stream().forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        // Filtering Duplicates Method 2 (Order Maintained : LinkedHashSet)
+        Set<Integer> dupDataLinked = list.stream().filter(x -> Collections.frequency(list, x) > 1).collect(Collectors.toCollection(LinkedHashSet::new));
+        dupDataLinked.stream().forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        // Filtering Unique
+        list.stream().distinct().forEach(System.out::println);
+
+
 
     }
 }
