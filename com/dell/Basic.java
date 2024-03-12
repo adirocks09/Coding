@@ -213,5 +213,44 @@ public class Basic {
             System.out.println(x.toUpperCase());
         }, () -> System.out.println(" No Words Found"));
 
+        System.out.println("-------------------------");
+
+        // String Builder
+        StringBuilder sb = new StringBuilder("Aditya Anand");
+        System.out.println(sb);
+        System.out.println(sb.append(" is a Good Boy. "));
+        System.out.println(sb.substring(2,7));
+        System.out.println(sb.subSequence(2,7));
+        System.out.println(sb.replace(0,6, "Neha"));
+        System.out.println(sb.delete(0,7));
+        System.out.println(sb.deleteCharAt(3));
+        System.out.println(sb.insert(0,"XX"));
+        System.out.println(sb.reverse());
+
+        System.out.println("-------------------------");
+
+        // String Tokenizer
+        StringTokenizer sentence = new StringTokenizer("I love to code and solve problems", " ");
+        while(sentence.hasMoreTokens()){
+            System.out.println(sentence.nextToken());
+        }
+        System.out.println("-------------------------");
+
+        sentence = new StringTokenizer("I love to code and solve problems", " ", true);
+        while(sentence.hasMoreTokens()){
+            System.out.println(sentence.nextToken());
+        }
+
+        System.out.println("-------------------------");
+
+        StringTokenizer expression = new StringTokenizer("2+3-1*8/4","+-*/",true);
+        while(expression.hasMoreTokens()){
+            System.out.println(expression.nextToken());
+        }
+
+
+
+
+
     }
 }
