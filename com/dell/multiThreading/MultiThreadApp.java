@@ -3,19 +3,19 @@ package com.dell.multiThreading;
 class Foo {
     public void first() {
         for (int i = 1; i <= 100; i++) {
-            System.out.println(i +" : first");
+            System.out.println(i +" : first" + " --> " + Thread.currentThread().getName());
         }
     }
 
     public void second() {
         for (int i = 1; i <= 100; i++) {
-            System.out.println(i + " : second");
+            System.out.println(i +" : second" + " --> " + Thread.currentThread().getName());
         }
     }
 
     public void third() {
         for (int i = 1; i <= 100; i++) {
-            System.out.println(i + " : third");
+            System.out.println(i +" : third " + " --> " + Thread.currentThread().getName());
         }
     }
 }
@@ -53,6 +53,10 @@ class MultiThreadApp {
             }
         });
 
+        t1.setName("Thread-1");
+        t2.setName("Thread-2");
+        t3.setName("Thread-3");
+
         try {
             t1.start();
             //t1.join();   // Method Sequence is not maintained without calling join
@@ -84,6 +88,10 @@ class MultiThreadApp {
             }
         });
 
+        t1.setName("Thread-1");
+        t2.setName("Thread-2");
+        t3.setName("Thread-3");
+
         try {
             t1.start();
             t1.join();
@@ -102,6 +110,10 @@ class MultiThreadApp {
         Thread t1 = new Thread(() -> foo.first());
         Thread t2 = new Thread(() -> foo.second());
         Thread t3 = new Thread(() -> foo.third());
+
+        t1.setName("Thread-1");
+        t2.setName("Thread-2");
+        t3.setName("Thread-3");
 
         try {
             t1.start();
