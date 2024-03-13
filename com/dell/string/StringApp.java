@@ -1,8 +1,8 @@
-package com.dell;
+package com.dell.string;
 
 import java.util.*;
 
-public class TestApp9 {
+public class StringApp {
 
     public static void main (String args[]){
 
