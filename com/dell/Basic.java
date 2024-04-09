@@ -15,7 +15,13 @@ public class Basic {
         // Array to List
         Integer data[] = {5,3,1,9,10,0,7,10};
 
-        // List<Integer> dataList = Arrays.asList(data);  -> this returns un-modifiable list
+        //Creates an un-modifiable list
+        List<Integer> dataListNonEditable = Arrays.asList(data);
+        try {
+            dataListNonEditable.add(20);  //gives Exception
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         List<Integer> dataList = new ArrayList<>(Arrays.asList(data));
         dataList.add(20);
@@ -120,6 +126,13 @@ public class Basic {
         empList.stream()
                 .filter(x->x.getSalary()>1200)
                 .sorted((x,y)->x.getName().compareTo(y.getName()))
+                .forEach(System.out::println);
+
+        System.out.println("-------------------------");
+
+        empList.stream()
+                .sorted(Comparator.comparingInt(Employee::getSalary).reversed())
+                .sorted(Comparator.comparing(Employee::getName).reversed())
                 .forEach(System.out::println);
 
         System.out.println("-------------------------");
@@ -237,6 +250,13 @@ public class Basic {
         System.out.println("-------------------------");
 
         sentence = new StringTokenizer("I love to code and solve problems", " ", true);
+        while(sentence.hasMoreTokens()){
+            System.out.println(sentence.nextToken());
+        }
+
+        System.out.println("-------------------------");
+
+        sentence = new StringTokenizer("I love to code and solve problems", " ", false);
         while(sentence.hasMoreTokens()){
             System.out.println(sentence.nextToken());
         }

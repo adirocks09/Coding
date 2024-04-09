@@ -4,8 +4,10 @@ import java.util.*;
 
 public class StringApp1 {
     public static void main(String args[]){
-        //String s = "ababcdddefgfhijijh";  // op = abab c ddd e fgf hijijh
-        String s = "ababcdeddefgfhijijh";  // op = abab c ddd e fgf hijijh
+        // String s = "ababcdddefgfhijijh";  // op = abab c ddd e fgf hijijh
+         String s = "ababcdeddefgfhijijh";  // op = abab c ddde fgf hijijh
+
+        //String s = "ababcd";  // op = abab c ddd e fgf hijijh
 
         Map<Character,Integer> map = new LinkedHashMap<>();
 
